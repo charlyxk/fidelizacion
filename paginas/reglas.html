@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Carlos Cáceres, Claudio Ferreira">
+    <title>Sistema de Fidelización de clientes</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Empresa XY</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Salir</a>
+    </div>
+  </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="clientes.html">
+              <i data-feather="user-plus"></i>
+              Clientes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="conceptos.html">
+              <i data-feather="archive"></i>
+              Conceptos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="reglas.html">
+              <i data-feather="briefcase"></i>
+              Reglas
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="vencimientos.html">
+              <i data-feather="minus-circle"></i>
+              Vencimientos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="consultas.html">
+              <i data-feather="pie-chart"></i>
+              Consultas
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="servicios.html">
+              <i data-feather="sliders"></i>
+              Servicios
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Reglas</h1>
+      </div>
+      <button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#agregarReglaModal">
+        Agregar Regla
+      </button>
+      <h4>Administración de Reglas de Asignación de puntos</h4>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm table-sm crud-table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Limite Inferior</th>
+              <th scope="col">Limite Superior</th>
+              <th scope="col">Monto</th>
+              <th scope="col">Equivalencia</th>
+              <th scope="col">Operacion</th>
+
+            </tr>
+          </thead>
+          <tbody>
+           <!--sector de datos dinamicos-->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+<!--template de datos-->
+<template id="crud-template">
+  <tr>
+    <td class="id"></td>
+    <td class="limite_inferior"></td>
+    <td class="limite_superior"></td>
+    <td class="monto_equivalencia"></td>
+    <td class="puntos"></td>
+    <td>
+      <a href="#editarReglasModal" data-bs-toggle="modal" data-bs-target="#editarReglasModal"><i class="material-icons edit" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+      <a href="" data-bs-toggle="modal" data-bs-target=""><i class="material-icons delete" data-toggle="tooltip" title="Borrar">&#xE872;</i></a>
+    </td>
+  </tr>
+</template>
+<!-- ++Agregar Modal HTML -->
+<div id="agregarReglasModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="crud-form"><!---->
+        <div class="modal-header">						
+          <h4 class="modal-title">Agregar Regla</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar">&times;</button>
+        </div>
+        <div class="modal-body">					
+          <div class="form-group">
+            <label>Limite Inferior</label>
+            <input type="text" name="limite_inferior" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Limite Superior</label>
+            <input type="text" name="limite_superior class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Monto</label>
+            <input type="text" name="monto_equivalencia" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Puntos</label>
+            <input type="text" name="puntos" class="form-control" required>
+          </div>
+			
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default close" data-dismiss="modal" value="Cancelar">
+          <input type="submit" class="btn btn-success" value="Agregar">
+          <input type="hidden" name="id">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Agregar Modal HTML -->
+<!-- ++Editar Modal HTML -->
+<div id="editarReglasModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form class="frm-editar">
+        <div class="modal-header">						
+          <h4 class="modal-title">Editar Regla</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar">&times;</button>
+        </div>
+        <div class="modal-body">					
+          <div class="form-group">
+            <label>Limite Inferior</label>
+            <input type="text" name="limite_inferior" class="form-control" readonly>
+          </div>
+          <div class="form-group">
+            <label>Limite Superior</label>
+            <input type="text" name="limite_superior" class="form-control" readonly>
+          </div>
+          <div class="form-group">
+            <label>Monto</label>
+            <input type="text" name="monto_equivalencia" class="form-control" readonly>
+          </div>
+          <div class="form-group">
+            <label>Puntos</label>
+            <input type="text" name="puntos" class="form-control">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <!--<input type="button" class="btn btn-default close" data-dismiss="modal" value="Cancelar">-->
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <input type="submit" class="btn btn-success" value="Editar">
+          <input type="hidden" name="id">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- ++Borrar Modal HTML -->
+<div id="borrarReglasModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">						
+          <h4 class="modal-title">Borrar Regla</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar">&times;</button>
+        </div>
+        <div class="modal-body">					
+          <p>¿Está seguro que desea eliminar este registro?</p>
+          <p class="text-warning"><small>Esta accion no podra ser revertida.</small></p>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+          <input type="submit" class="btn btn-danger" value="Borrar">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/feather.min.js"></script>
+<script src="../js/dashboard.js"></script>
+<script src="../js/crud_reglas.js"></script>																	  
+</body>
+</html>
