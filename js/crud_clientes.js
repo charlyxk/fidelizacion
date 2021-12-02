@@ -72,7 +72,8 @@ d.addEventListener("submit", async e => {
         let options = {
           method: "POST",
           headers: {
-            "Content-type": "application/json; charset=utf-8"
+            "Content-type": "application/json; charset=utf-8",
+            "Accept":"application/json"
           },
           body: JSON.stringify({
             nombre: e.target.nombre.value,
