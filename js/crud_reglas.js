@@ -62,10 +62,10 @@ d.addEventListener("submit", async e => {
             "Content-type": "application/json; charset=utf-8"
           },
           body: JSON.stringify({
-            limiteInferior: e.target.nombre.value,
-            limiteSuperior: e.target.apellido.value,
-            montoEquivalencia: e.target.numerodoc.value,
-            puntos: e.target.tipodoc.value
+            limiteInferior: e.target.limite_inferior.value,
+            limiteSuperior: e.target.limite_superior.value,
+            montoEquivalencia: e.target.monto_equivalencia.value,
+            puntos: e.target.puntos.value
           })
         },
 
@@ -86,7 +86,8 @@ d.addEventListener("submit", async e => {
         let options = {
           method: "PUT",
           headers: {
-            "Content-type": "application/json; charset=utf-8"
+            "Content-type": "application/json; charset=utf-8",
+            "Accept":"application/json"
           },
           body: JSON.stringify({
             idRelga: e.target.id.value,
@@ -97,13 +98,14 @@ d.addEventListener("submit", async e => {
 
           })
         },
-
+       
          res = await fetch(`http://localhost:8080/webservices-1.0/regla/actualizar/`, options)
 
         if (!res.ok) throw { status: res.status, statusText: res.statusText };
 
-        location.reload();
-      } catch (err) {
+       location.reload();
+      }catch (err) {
+        console.log(err);
         let message = err.statusText || "Ocurrió un error [107]";
         $form.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
       }
